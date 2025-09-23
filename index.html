@@ -122,13 +122,18 @@
     .nav-button:hover { background: rgba(15, 120, 110, 0.95); transform: scale(1.1); }
 
     /* ===== Skills ===== */
-    .skills-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 50px;
-    }
-    .skill-container { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 160px; text-align: center; }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 per row */
+  gap: 40px;
+  justify-items: center;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 700px;
+}
+
+    .skill-container { text-align: center; }
+
     .skill-circle {
       position: relative;
       width: 120px;
@@ -146,7 +151,7 @@
     .inner-skill-circle { width: 85px; height: 85px; border-radius: 50%; background: #1e1e1e; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; }
     .skill-circle span { color: white; font-size: 14px; font-weight: bold; }
     .skill-percent { font-size: 18px; color: #38ef7d; margin-top: 5px; }
-    .skill-description { font-size: 13px; color: #aaa; }
+    .skill-description { font-size: 13px; color: #aaa; margin-top: 10px; }
 
     /* ===== Education Timeline ===== */
     .education-timeline { position: relative; max-width: 600px; margin: auto; padding-left: 30px; border-left: 3px solid #38ef7d; display: flex; flex-direction: column; gap: 30px; }
@@ -154,29 +159,47 @@
     .edu-step::before { content: ""; position: absolute; top: 20px; left: -38px; width: 20px; height: 20px; background: #38ef7d; border: 3px solid #111; border-radius: 50%; }
 
     /* ===== Certifications Grid ===== */
-    .cert-grid {
+    .certifications-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(3, 1fr); /* 3 per row */
+      gap: 40px;
+      justify-items: center;
+      margin-top: 40px;
       width: 100%;
-      max-width: 1000px;
+      max-width: 1200px;
     }
     .cert-card {
       background: #333;
-      border-radius: 16px;
       padding: 20px;
+      border-radius: 12px;
       text-align: center;
+      max-width: 250px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .cert-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(56,239,125,0.3); }
     .cert-card img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
+      width: 100%;
+      max-width: 120px;
       margin-bottom: 15px;
+      border-radius: 8px;
     }
-    .cert-card h3 { margin: 10px 0; color: #38ef7d; }
-    .cert-card p { font-size: 14px; color: #bbb; }
+    .cert-card h3 {
+      color: #38ef7d;
+      margin-bottom: 10px;
+    }
+    .cert-card p {
+      color: #ccc;
+      font-size: 14px;
+    }
+    .cert-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+    @media (max-width: 1024px) {
+      .certifications-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .certifications-grid { grid-template-columns: 1fr; }
+    }
 
     footer { color: #aaa; text-align: center; padding: 20px 0; }
 
@@ -198,7 +221,14 @@
 <!-- Header -->
 <header id="home">
   <h1>Hello World</h1>
-  <p class="subtitle reveal">Web Developer</p>
+  <p class="subtitle reveal">Hi, I am Deon.</p>
+  <h2 class="content reveal" style="color: white; transition: opacity 1.8s ease, transform 2.8s ease;">
+    A 14 Year old aspiring engineer & full-stack developer skilled in C, C++, C#, Python,<br>
+    HTML, CSS, and JavaScript, with experience in Arduino projects, PCB modelling, and YouTube content creation.<br>
+    Proficient in full-stack development, Git, API integration, circuit design, and beginner-level PCB schematic capture.<br>
+    I have developed Arduino-based automation systems, Python web apps with databases,<br>
+    and educational content on programming & electronics.
+  </h2>
 </header>
 
 <!-- Experience -->
@@ -210,8 +240,8 @@
         <div class="experience-content">
           <img src="/images/abc_logo.png" alt="Company 1" class="experience-image">
           <div>
-            <h3>Frontend Developer</h3>
-            <p>Built responsive web apps with React and CSS. Designed reusable UI components and optimized performance.</p>
+            <h3>White Hat</h3>
+            <p>Penetration testing and ethical hacking</p>
           </div>
         </div>
       </div>
@@ -219,8 +249,8 @@
         <div class="experience-content">
           <img src="/images/xyz_logo.png" alt="Company 2" class="experience-image">
           <div>
-            <h3>Backend Developer</h3>
-            <p>Developed scalable APIs and handled DB integrations. Focused on system architecture and security.</p>
+            <h3>AI Developer</h3>
+            <p>Developed a teaching LLM</p>
           </div>
         </div>
       </div>
@@ -233,38 +263,91 @@
 </section>
 
 <!-- Skills -->
-<section id="skills">
-  <h2 class="reveal">Skills</h2>
-  <div class="skills-buttons">
+<section id="skills" class="section">
+  <h2>Skills</h2>
+  <div class="skills-grid">
     <div class="skill-container reveal">
-      <div class="skill-circle" data-percent="90">
+      <div class="skill-circle" data-percent="95">
         <div class="inner-skill-circle">
           <span>HTML</span>
           <div class="skill-percent">0%</div>
         </div>
       </div>
-      <div class="skill-description">HTML.</div>
+      <div class="skill-description">Web design and layout.</div>
     </div>
+
     <div class="skill-container reveal">
-      <div class="skill-circle" data-percent="80">
+      <div class="skill-circle" data-percent="40">
         <div class="inner-skill-circle">
           <span>CSS</span>
           <div class="skill-percent">0%</div>
         </div>
       </div>
-      <div class="skill-description">Styling</div>
+      <div class="skill-description">Styling and design choices</div>
     </div>
+
     <div class="skill-container reveal">
-      <div class="skill-circle" data-percent="75">
+      <div class="skill-circle" data-percent="70">
         <div class="inner-skill-circle">
           <span>JavaScript</span>
           <div class="skill-percent">0%</div>
         </div>
       </div>
-      <div class="skill-description">Programming</div>
+      <div class="skill-description">Logic and website functionality</div>
+    </div>
+
+    <div class="skill-container reveal">
+      <div class="skill-circle" data-percent="99">
+        <div class="inner-skill-circle">
+          <span>Python</span>
+          <div class="skill-percent">0%</div>
+        </div>
+      </div>
+      <div class="skill-description">Python (in general), APIs, Frameworks, and logic</div>
+    </div>
+
+    <div class="skill-container reveal">
+      <div class="skill-circle" data-percent="20">
+        <div class="inner-skill-circle">
+          <span>C</span>
+          <div class="skill-percent">0%</div>
+        </div>
+      </div>
+      <div class="skill-description">Basic C coding and file manipulation</div>
+    </div>
+
+    <div class="skill-container reveal">
+      <div class="skill-circle" data-percent="75">
+        <div class="inner-skill-circle">
+          <span>C++ (Arduino)</span>
+          <div class="skill-percent">0%</div>
+        </div>
+      </div>
+      <div class="skill-description">Hardware linking, software connectivity, wireless communication</div>
+    </div>
+
+    <div class="skill-container reveal">
+      <div class="skill-circle" data-percent="35">
+        <div class="inner-skill-circle">
+          <span>C# (Unity)</span>
+          <div class="skill-percent">0%</div>
+        </div>
+      </div>
+      <div class="skill-description">Game development in Unity</div>
+    </div>
+
+    <div class="skill-container reveal">
+      <div class="skill-circle" data-percent="25">
+        <div class="inner-skill-circle">
+          <span>Lua</span>
+          <div class="skill-percent">0%</div>
+        </div>
+      </div>
+      <div class="skill-description">Game development in Roblox</div>
     </div>
   </div>
 </section>
+
 
 <!-- Education -->
 <section id="education">
@@ -284,22 +367,32 @@
 <!-- Certifications -->
 <section id="certifications">
   <h2 class="reveal">Certifications</h2>
-  <div class="cert-grid">
+  <div class="certifications-grid">
+
     <div class="cert-card reveal">
-      <img src="CV-website/images/cert1.png" alt="Certification 1">
+      <img src="/images/cert1.png" alt="Certification 1">
       <h3>Web Development</h3>
       <p>Web development certification</p>
     </div>
+
     <div class="cert-card reveal">
-      <img src="CV-website/images/cert2.png" alt="Certification 2">
+      <img src="/images/cert2.png" alt="Certification 2">
       <h3>JavaScript</h3>
-      <p>fullstack programmer</p>
+      <p>Fullstack programmer</p>
     </div>
+
     <div class="cert-card reveal">
-      <img src="CV-website/images/cert3.png" alt="Certification 3">
+      <img src="/images/cert3.png" alt="Certification 3">
       <h3>Cloud Computing</h3>
-      <p>chatgpt</p>
+      <p>ChatGPT</p>
     </div>
+
+    <div class="cert-card reveal">
+      <img src="/images/cert4.png" alt="Certification 4">
+      <h3>Data Science</h3>
+      <p>Machine learning certification</p>
+    </div>
+
   </div>
 </section>
 
@@ -373,20 +466,18 @@
   /* ===== Nav Highlight on Scroll ===== */
   const sections = document.querySelectorAll("section, header");
   const navLinks = document.querySelectorAll(".topbar a");
-
   const navObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         navLinks.forEach(link => link.classList.remove("active"));
-        const activeLink = document.querySelector(`.topbar a[href="#${entry.target.id}"]`);
+        const id = entry.target.getAttribute("id");
+        const activeLink = document.querySelector(`.topbar a[href="#${id}"]`);
         if (activeLink) activeLink.classList.add("active");
       }
     });
   }, { threshold: 0.6 });
-  sections.forEach(sec => navObserver.observe(sec));
+  sections.forEach(section => navObserver.observe(section));
 </script>
 
 </body>
 </html>
-
-
