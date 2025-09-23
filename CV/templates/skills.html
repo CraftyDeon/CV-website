@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data['name'] }} - {{ skill }} Projects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>{{ data['name'] }}</h1>
+        <p class="subtitle">{{ data['job_title'] }}</p>
+        <div class="contact">
+            <p>Email: {{ data['contact']['email'] }}</p>
+            <p>Phone: {{ data['contact']['phone'] }}</p>
+            <p>Location: {{ data['contact']['location'] }}</p>
+        </div>
+    </div>
+</header>
+
+<!-- Decorative Waves -->
+<div class="wave-container">
+    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#11998e" fill-opacity="1" d="M0,96L60,117.3C120,139,240,181,360,181.3C480,181,600,139,720,138.7C840,139,960,181,1080,197.3C1200,213,1320,203,1380,197.3L1440,192L1440,320L0,320Z"></path>
+        <path fill="#36c9c2" fill-opacity="0.6" d="M0,160L80,176C160,192,320,224,480,229.3C640,235,800,213,960,202.7C1120,192,1280,192,1360,192L1440,192L1440,320L0,320Z"></path>
+        <path fill="#ffffff" fill-opacity="0.5" d="M0,224L48,224C96,224,192,224,288,218.7C384,213,480,203,576,192C672,181,768,171,864,176C960,181,1056,203,1152,197.3C1248,192,1344,160,1392,144L1440,128L1440,320L0,320Z"></path>
+    </svg>
+</div>
+
+
+    <section class="section">
+        <div class="container">
+            <h2>{{ skill }} Demo Projects</h2>
+            {% if projects %}
+                <div class="skills-buttons">
+                    {% for project in projects %}
+                        <a class="skill-btn" href="#">{{ project }}</a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No demo projects available for {{ skill }}.</p>
+            {% endif %}
+            <p style="margin-top:20px;">
+                <a href="{{ url_for('index') }}" class="skill-btn">← Back to Resume</a>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 {{ data['name'] }}. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
