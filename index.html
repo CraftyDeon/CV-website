@@ -206,6 +206,69 @@
     /* ===== Reveal Animations ===== */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal.active { opacity: 1; transform: translateY(0); }
+
+
+/* Footer Styles */
+#footer {
+  text-align: center;
+  padding: 30px;
+  background: #111;
+  color: #ccc;
+}
+
+#footer .socials {
+  margin: 15px 0;
+}
+
+#footer .socials a img {
+  width: 32px;
+  height: 32px;
+  margin: 0 10px;
+  filter: invert(1); /* makes logos white */
+  transition: transform 0.2s ease;
+}
+
+#footer .socials a img:hover {
+  transform: scale(1.2);
+  filter: invert(56%) sepia(92%) saturate(457%) hue-rotate(91deg) brightness(92%) contrast(95%);
+}
+
+.contact-form {
+  margin-top: 20px;
+}
+
+.contact-form h3 {
+  color: #0f0;
+  margin-bottom: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.contact-form button {
+  background: #0f0;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #0c0;
+}
+
+
+
   </style>
 </head>
 <body>
@@ -354,12 +417,19 @@
   <h2 class="reveal">Education</h2>
   <div class="education-timeline">
     <div class="edu-step reveal">
-      <h3>Preschool</h3>
-      <p>description</p>
+      <img src="images/TLS.png" alt="school 1">
+      <h3>Preschool: The letterland School</h3>
+      <p>My preschool from LKG to UKG</p>
     </div>
     <div class="edu-step reveal">
-      <h3>School</h3>
-      <p>description</p>
+      <img src="images/TIPS.png" alt="school 2">
+      <h3>School: TIPS(The Indian Public School)</h3>
+      <p>My school from Grade 1 to Grade 4</p>
+    </div>
+        <div class="edu-step reveal">
+          <img src="images/GVIS.png" alt="school 3">
+      <h3>School: Greenvalley International School</h3>
+      <p>My school from Grade 5 to the present</p>
     </div>
   </div>
 </section>
@@ -370,36 +440,114 @@
   <div class="certifications-grid">
 
     <div class="cert-card reveal">
-      <img src="images/cert1.png" alt="Certification 1">
+      <img src="images/py_bootstack.jpg" alt="Certification 1">
       <h3>Web Development</h3>
       <p>Web development certification</p>
     </div>
 
     <div class="cert-card reveal">
-      <img src="images/cert2.png" alt="Certification 2">
-      <h3>JavaScript</h3>
-      <p>Fullstack programmer</p>
+      <img src="images/HTML_bootstack.jpg" alt="Certification 2">
+      <h3>UI/UX</h3>
+      <p>Arduino,HTML programing</p>
     </div>
 
     <div class="cert-card reveal">
-      <img src="images/cert3.png" alt="Certification 3">
-      <h3>Cloud Computing</h3>
-      <p>ChatGPT</p>
+      <img src="images/code.org.jpg" alt="Certification 3">
+      <h3>C programing</h3>
+      <p>Certificate for C programing</p>
     </div>
 
     <div class="cert-card reveal">
-      <img src="images/cert4.png" alt="Certification 4">
-      <h3>Data Science</h3>
-      <p>Machine learning certification</p>
+      <img src="images/xcel_mentors.jpg" alt="Certification 4">
+      <h3>C++ programing</h3>
+      <p>Hardware programing certification</p>
     </div>
 
+     <div class="cert-card reveal">
+      <img src="images/inker_robotics.jpg" alt="Certification 5">
+      <h3>C++/Arduino programing</h3>
+      <p>Hardware programing certification</p>
+    </div>
+    
+    <div class="cert-card reveal">
+      <img src="images/vega.jpg" alt="Certification 6">
+      <h3>CDAC Chip development </h3>
+      <p>VEGA chip course certification</p>
+    </div>
+
+    <div class="cert-card reveal">
+      <img src="images/simun.jpg" alt="Certification 7">
+      <h3>South indian MUN</h3>
+      <p>Model United Nations certification</p>
+    </div>
+
+    <div class="cert-card reveal">
+      <img src="images/cnsmun.jpg" alt="Certification 8">
+      <h3>Christ Nagar School MUN</h3>
+      <p>Model United Nations certification</p>
+    </div>
+    
+    <div class="cert-card reveal">
+      <img src="images/scvmun.jpg" alt="Certification 9">
+      <h3>Sarvodaya Central Vidyalaya MUN</h3>
+      <p>Model United Nations certification</p>
+    </div>
+
+    <div class="cert-card reveal">
+      <img src="images/scvmun.jpg" alt="Certification 10">
+      <h3>Sarvodaya Central Vidyalaya MUN</h3>
+      <p>Model United Nations certification</p>
+    </div>
+
+    <div class="cert-card reveal">
+      <img src="images/hacking.jpg" alt="Certification 11">
+      <h3>CE|H course by IITK</h3>
+      <p>Ethical Hacking certification</p>
+    </div>
+
+    <div class="cert-card reveal">
+      <img src="images/olympiad.jpg" alt="Certification 12">
+      <h3>Silverstone Olympiad</h3>
+      <p>Olympiad participation certification</p>
+    </div>
+    
   </div>
 </section>
 
 <!-- Footer -->
-<footer>
-  <p>&copy; Portfolio</p>
+<<footer>
+  <section id="footer">
+    <p>&copy; Portfolio</p>
+
+    <!-- Social Links with Logos -->
+    <div class="socials">
+      <a href="https://github.com/yourusername" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+      </a>
+      <a href="https://x.com/yourusername" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X (Twitter)">
+      </a>
+      <a href="https://discord.gg/yourinvite" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord">
+      </a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h3>Contact Me</h3>
+      <form action="https://formspree.io/f/mrbyedpe" method="POST">
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
 </footer>
+
+
 
 <script>
   /* ===== Experience Slider ===== */
@@ -481,5 +629,3 @@
 
 </body>
 </html>
-
-
