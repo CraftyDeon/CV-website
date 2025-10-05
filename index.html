@@ -267,6 +267,41 @@
   background: #0c0;
 }
 
+/* Image Slider */
+.image-slider {
+  width: 100%;
+  max-width: 800px; /* adjust to fit your header */
+  margin: auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.slides {
+  display: flex;
+  width: 500%; /* 5 images */
+  animation: slide 20s infinite;
+}
+
+.slides img {
+  width: 100%;
+  height: auto;
+  flex: 1 0 100%;
+  object-fit: cover;
+}
+
+/* Animation: loop through images */
+@keyframes slide {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(0); }
+  25%  { transform: translateX(-100%); }
+  45%  { transform: translateX(-100%); }
+  50%  { transform: translateX(-200%); }
+  70%  { transform: translateX(-200%); }
+  75%  { transform: translateX(-300%); }
+  95%  { transform: translateX(-300%); }
+  100% { transform: translateX(-400%); }
+}
 
 
   </style>
@@ -283,6 +318,15 @@
 
 <!-- Header -->
 <header id="home">
+  <div class="image-slider">
+    <div class="slides">
+      <img src="images/img1.jpg" alt="Image 1">
+      <img src="images/img2.jpg" alt="Image 2">
+      <img src="images/img3.jpg" alt="Image 3">
+      <img src="images/img4.jpg" alt="Image 4">
+      <img src="images/img5.jpg" alt="Image 5">
+    </div>
+  </div>
   <h1>Hello World</h1>
   <p class="subtitle reveal">Hi, I am Deon.</p>
   <h2 class="content reveal" style="color: white; transition: opacity 1.8s ease, transform 2.8s ease;">
@@ -639,6 +683,7 @@
 
 </body>
 </html>
+
 
 
 
