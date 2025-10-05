@@ -4,124 +4,170 @@
   <meta charset="UTF-8">
   <title>My Portfolio</title>
   <style>
-    /* ===== Global Styles ===== */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #222;
-      color: #ddd;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-    html, body { scroll-snap-type: y mandatory; }
+/* ===== Global Styles ===== */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #ddd;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+html, body { scroll-snap-type: y mandatory; }
 
-    /* ===== Topbar ===== */
-    .topbar {
-      background: linear-gradient(135deg, #0f2027, #11998e, #38ef7d);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 8px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-    .topbar a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-      margin: 0 20px;
-      padding: 6px 10px;
-      border-radius: 6px;
-      transition: all 0.25s ease;
-    }
-    .topbar a.active { background: rgba(255, 255, 255, 0.2); color: #38ef7d; }
-    .topbar a:hover { opacity: 0.8; }
+/* ===== Topbar ===== */
+.topbar {
+  background: linear-gradient(135deg, #0f2027, #11998e, #38ef7d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.topbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0 20px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+.topbar a.active { background: rgba(255, 255, 255, 0.2); color: #38ef7d; }
+.topbar a:hover { opacity: 0.8; }
 
-    /* ===== Sections ===== */
-    section, header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      scroll-snap-align: start;
-      padding: 40px;
-      box-sizing: border-box;
-    }
-    header {
-      background: linear-gradient(135deg, #0f2027, #11998e, #38ef7d);
-      color: white;
-      text-align: center;
-      border-bottom-left-radius: 50% 10%;
-      border-bottom-right-radius: 50% 10%;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 48px;
-      border-right: 0px solid rgba(255,255,255,0.7);
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 3s steps(60, end) forwards, blink 0.7s step-end infinite alternate;
-    }
-    header .subtitle { font-size: 24px; margin-top: 10px; color: #ccc; }
+/* ===== Sections ===== */
+section, header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  padding: 40px;
+  box-sizing: border-box;
+}
 
-    @keyframes typing { from { width: 0; } to { width: 100%; } }
-    @keyframes blink { 50% { border-color: transparent; } }
+/* ===== Header with Side Slider ===== */
+header {
+  background: linear-gradient(135deg, #0f2027, #11998e, #38ef7d);
+  color: white;
+  border-bottom-left-radius: 50% 10%;
+  border-bottom-right-radius: 50% 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
 
-    #experience { background: #2a2a2a; }
-    #skills { background: #1e1e1e; }
-    #education { background: #2a2a2a; }
-    #certifications { background: #1e1e1e; }
-    footer { background: #111; }
+/* Left image slider */
+.side-slider {
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
 
-    h2 { font-size: 32px; color: #38ef7d; margin-bottom: 20px; }
+.slides-vertical {
+  display: flex;
+  flex-direction: column;
+  height: calc(220px * 5); /* 5 stacked images */
+  animation: slide-vertical 20s infinite;
+}
 
-    /* ===== Experience Slider ===== */
-    #experience-wrapper { position: relative; overflow: hidden; width: 100%; max-width: 1100px; }
-    #experience-container { display: flex; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-    .experience-item { min-width: 100%; box-sizing: border-box; padding: 30px; display: flex; justify-content: center; }
-    .experience-content {
-      background-color: #333;
-      padding: 60px;
-      border-radius: 20px;
-      flex: 1;
-      max-width: 900px;
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-    .experience-image { width: 140px; height: 140px; border-radius: 16px; background: #444; flex-shrink: 0; }
-    .navigation {
-      position: absolute;
-      top: 50%;
-      width: 94%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      pointer-events: none;
-      padding: 0 30px;
-    }
-    .nav-button {
-      background: rgba(17, 153, 142, 0.9);
-      border: none;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      cursor: pointer;
-      color: white;
-      font-size: 28px;
-      font-weight: bold;
-      transition: all 0.2s ease;
-      pointer-events: auto;
-    }
-    .nav-button:hover { background: rgba(15, 120, 110, 0.95); transform: scale(1.1); }
+.slides-vertical img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
 
-    /* ===== Skills ===== */
+/* Right side header text */
+.header-content {
+  flex: 1;
+  text-align: left;
+}
+
+.header-content h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.header-content p {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #ccc;
+}
+
+/* Vertical sliding animation */
+@keyframes slide-vertical {
+  0%, 15%   { transform: translateY(0); }
+  25%, 40%  { transform: translateY(-220px); }
+  50%, 65%  { transform: translateY(-440px); }
+  75%, 90%  { transform: translateY(-660px); }
+  100%      { transform: translateY(-880px); }
+}
+
+/* ===== Section Colors ===== */
+#experience { background: #2a2a2a; }
+#skills { background: #1e1e1e; }
+#education { background: #2a2a2a; }
+#certifications { background: #1e1e1e; }
+footer { background: #111; }
+
+h2 { font-size: 32px; color: #38ef7d; margin-bottom: 20px; }
+
+/* ===== Experience Slider ===== */
+#experience-wrapper { position: relative; overflow: hidden; width: 100%; max-width: 1100px; }
+#experience-container { display: flex; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+.experience-item { min-width: 100%; box-sizing: border-box; padding: 30px; display: flex; justify-content: center; }
+.experience-content {
+  background-color: #333;
+  padding: 60px;
+  border-radius: 20px;
+  flex: 1;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.experience-image { width: 140px; height: 140px; border-radius: 16px; background: #444; flex-shrink: 0; }
+.navigation {
+  position: absolute;
+  top: 50%;
+  width: 94%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+  padding: 0 30px;
+}
+.nav-button {
+  background: rgba(17, 153, 142, 0.9);
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  pointer-events: auto;
+}
+.nav-button:hover { background: rgba(15, 120, 110, 0.95); transform: scale(1.1); }
+
+/* ===== Skills ===== */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 per row */
@@ -131,82 +177,79 @@
   width: 100%;
   max-width: 700px;
 }
+.skill-container { text-align: center; }
+.skill-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(#444 0% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(56, 239, 125, 0.4);
+}
+.skill-circle:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(56, 239, 125, 0.8), 0 0 50px rgba(17, 153, 142, 0.6); }
+.inner-skill-circle { width: 85px; height: 85px; border-radius: 50%; background: #1e1e1e; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; }
+.skill-circle span { color: white; font-size: 14px; font-weight: bold; }
+.skill-percent { font-size: 18px; color: #38ef7d; margin-top: 5px; }
+.skill-description { font-size: 13px; color: #aaa; margin-top: 10px; }
 
-    .skill-container { text-align: center; }
+/* ===== Education Timeline ===== */
+.education-timeline { position: relative; max-width: 600px; margin: auto; padding-left: 30px; border-left: 3px solid #38ef7d; display: flex; flex-direction: column; gap: 30px; }
+.edu-step { background: #333; padding: 20px; border-radius: 12px; position: relative; }
+.edu-step::before { content: ""; position: absolute; top: 20px; left: -38px; width: 20px; height: 20px; background: #38ef7d; border: 3px solid #111; border-radius: 50%; }
 
-    .skill-circle {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: conic-gradient(#444 0% 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 15px rgba(56, 239, 125, 0.4);
-    }
-    .skill-circle:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(56, 239, 125, 0.8), 0 0 50px rgba(17, 153, 142, 0.6); }
-    .inner-skill-circle { width: 85px; height: 85px; border-radius: 50%; background: #1e1e1e; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; }
-    .skill-circle span { color: white; font-size: 14px; font-weight: bold; }
-    .skill-percent { font-size: 18px; color: #38ef7d; margin-top: 5px; }
-    .skill-description { font-size: 13px; color: #aaa; margin-top: 10px; }
+/* ===== Certifications Grid ===== */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  gap: 40px;
+  justify-items: center;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 1200px;
+}
+.cert-card {
+  background: #333;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cert-card img {
+  width: 100%;
+  max-width: 120px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+.cert-card h3 {
+  color: #38ef7d;
+  margin-bottom: 10px;
+}
+.cert-card p {
+  color: #ccc;
+  font-size: 14px;
+}
+.cert-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+@media (max-width: 1024px) {
+  .certifications-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .certifications-grid { grid-template-columns: 1fr; }
+}
 
-    /* ===== Education Timeline ===== */
-    .education-timeline { position: relative; max-width: 600px; margin: auto; padding-left: 30px; border-left: 3px solid #38ef7d; display: flex; flex-direction: column; gap: 30px; }
-    .edu-step { background: #333; padding: 20px; border-radius: 12px; position: relative; }
-    .edu-step::before { content: ""; position: absolute; top: 20px; left: -38px; width: 20px; height: 20px; background: #38ef7d; border: 3px solid #111; border-radius: 50%; }
+footer { color: #aaa; text-align: center; padding: 20px 0; }
 
-    /* ===== Certifications Grid ===== */
-    .certifications-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 per row */
-      gap: 40px;
-      justify-items: center;
-      margin-top: 40px;
-      width: 100%;
-      max-width: 1200px;
-    }
-    .cert-card {
-      background: #333;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      max-width: 250px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .cert-card img {
-      width: 100%;
-      max-width: 120px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-    }
-    .cert-card h3 {
-      color: #38ef7d;
-      margin-bottom: 10px;
-    }
-    .cert-card p {
-      color: #ccc;
-      font-size: 14px;
-    }
-    .cert-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    }
-    @media (max-width: 1024px) {
-      .certifications-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 600px) {
-      .certifications-grid { grid-template-columns: 1fr; }
-    }
-
-    footer { color: #aaa; text-align: center; padding: 20px 0; }
-
-    /* ===== Reveal Animations ===== */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-
+/* ===== Reveal Animations ===== */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
 
 /* Footer Styles */
 #footer {
@@ -215,11 +258,7 @@
   background: #111;
   color: #ccc;
 }
-
-#footer .socials {
-  margin: 15px 0;
-}
-
+#footer .socials { margin: 15px 0; }
 #footer .socials a img {
   width: 32px;
   height: 32px;
@@ -227,21 +266,12 @@
   filter: invert(1); /* makes logos white */
   transition: transform 0.2s ease;
 }
-
 #footer .socials a img:hover {
   transform: scale(1.2);
   filter: invert(56%) sepia(92%) saturate(457%) hue-rotate(91deg) brightness(92%) contrast(95%);
 }
-
-.contact-form {
-  margin-top: 20px;
-}
-
-.contact-form h3 {
-  color: #0f0;
-  margin-bottom: 10px;
-}
-
+.contact-form { margin-top: 20px; }
+.contact-form h3 { color: #0f0; margin-bottom: 10px; }
 .contact-form input,
 .contact-form textarea {
   width: 80%;
@@ -252,7 +282,6 @@
   border-radius: 5px;
   outline: none;
 }
-
 .contact-form button {
   background: #0f0;
   color: #000;
@@ -262,46 +291,7 @@
   cursor: pointer;
   transition: 0.3s;
 }
-
-.contact-form button:hover {
-  background: #0c0;
-}
-
-/* Image Slider */
-.image-slider {
-  width: 100%;
-  max-width: 800px; /* adjust to fit your header */
-  margin: auto;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-.slides {
-  display: flex;
-  width: 500%; /* 5 images */
-  animation: slide 20s infinite;
-}
-
-.slides img {
-  width: 100%;
-  height: auto;
-  flex: 1 0 100%;
-  object-fit: cover;
-}
-
-/* Animation: loop through images */
-@keyframes slide {
-  0%   { transform: translateX(0); }
-  20%  { transform: translateX(0); }
-  25%  { transform: translateX(-100%); }
-  45%  { transform: translateX(-100%); }
-  50%  { transform: translateX(-200%); }
-  70%  { transform: translateX(-200%); }
-  75%  { transform: translateX(-300%); }
-  95%  { transform: translateX(-300%); }
-  100% { transform: translateX(-400%); }
-}
+.contact-form button:hover { background: #0c0; }
 
 
   </style>
@@ -318,15 +308,21 @@
 
 <!-- Header -->
 <header id="home">
-  <div class="image-slider">
-    <div class="slides">
-      <img src="images/img1.jpg" alt="Image 1">
-      <img src="images/img2.jpg" alt="Image 2">
-      <img src="images/img3.jpg" alt="Image 3">
-      <img src="images/img4.jpg" alt="Image 4">
-      <img src="images/img5.jpg" alt="Image 5">
+  <div class="side-slider">
+    <div class="slides-vertical">
+      <img src="images/me.jpg" alt="Image 1">
+      <img src="images/ea.jpg" alt="Image 2">
+      <img src="images/vroom.jpg" alt="Image 3">
     </div>
   </div>
+
+  <!-- Header content (right side) -->
+  <div class="header-content">
+    <h1>My Portfolio</h1>
+    <p>Welcome to my site</p>
+  </div>
+</header>
+
   <h1>Hello World</h1>
   <p class="subtitle reveal">Hi, I am Deon.</p>
   <h2 class="content reveal" style="color: white; transition: opacity 1.8s ease, transform 2.8s ease;">
@@ -683,6 +679,7 @@
 
 </body>
 </html>
+
 
 
 
