@@ -55,18 +55,25 @@ section, header {
 
 /* ===== Header with Side Slider ===== */
 header {
-  background: linear-gradient(135deg, #0f2027, #11998e, #38ef7d);
-  color: white;
-  border-bottom-left-radius: 50% 10%;
-  border-bottom-right-radius: 50% 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 40px;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
+      background: linear-gradient(135deg, #0f2027, #11998e, #38ef7d);
+      color: white;
+      text-align: center;
+      border-bottom-left-radius: 50% 10%;
+      border-bottom-right-radius: 50% 10%;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 48px;
+      border-right: 0px solid rgba(255,255,255,0.7);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 3s steps(60, end) forwards, blink 0.7s step-end infinite alternate;
+    }
+    header .subtitle { font-size: 24px; margin-top: 10px; color: #ccc; }
+
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes blink { 50% { border-color: transparent; } }
 
 /* Left image slider */
 .side-slider {
@@ -308,11 +315,12 @@ footer { color: #aaa; text-align: center; padding: 20px 0; }
 
 <!-- Header -->
 <header id="home">
-  <div class="side-slider", style"align: left;">
+  <div class="side-slider", style"align: right;">
     <div class="slides-vertical">
       <img src="images/me.jpg" alt="Image 1">
       <img src="images/es.jpg" alt="Image 2">
       <img src="images/vroom.jpg" alt="Image 3">
+      <img src="images/aboguds.jpg" alt="Image 4">
     </div>
   </div>
 
@@ -675,6 +683,7 @@ footer { color: #aaa; text-align: center; padding: 20px 0; }
 
 </body>
 </html>
+
 
 
 
